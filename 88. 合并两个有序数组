@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package leetcode;
+
+import java.util.Arrays;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+/**
+ *
+ * @author Administrator
+ */
+public class Q088 {
+    public static void main(String[] args) {
+//88. 合并两个有序数组
+//输入:
+//nums1 = [-1,0,0,3,3,3,0,0,0], m = 6
+//nums2 = [1,2,2],       n = 3
+//
+//输出: [1,2,2,3,5,6]
+        int[] nums1 = {-1,0,0,3,3,3,0,0,0};
+        int[] nums2 = {1,2,2};
+        int m = 6;
+        int n = 3;
+        new Q088().merge(nums1, m, nums2, n);
+        System.out.println("nums1="+Arrays.toString(nums1));
+    }
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        System.arraycopy(nums2, 0, nums1, m, n);
+//        System.out.println("nums1="+Arrays.toString(nums1));
+        //int[] -> IntStream
+        IntStream intStream = Arrays.stream(nums1);
+        //filter and sorted
+        int[] nums3 = intStream
+                .sorted()
+               .toArray();
+        System.arraycopy(nums3, 0, nums1, 0, nums3.length);
+//       System.out.println("nums1="+Arrays.toString(nums1));
+    }
+}
